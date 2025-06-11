@@ -47,6 +47,18 @@ module tb_sysblock();
         @(posedge clk);
         exp = 32'h00000000;
         stat();
+        rst = 1'b1;
+
+        @(posedge clk);
+        rst <= 1'b0;
+        up <= 32'h3f800000;
+        left <= 32'h3f800000;
+        @(posedge clk);
+        up <= 32'h3f800000;
+        left <= 32'h3f800000;
+        @(posedge clk);
+        exp = 32'h40000000;
+        stat();
         $finish;
     end
 

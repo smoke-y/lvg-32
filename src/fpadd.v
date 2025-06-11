@@ -37,7 +37,7 @@ always @* begin
 	end
 	
 	//check if zero and sign to decide add/sub
-    if(amant[22:0] == 0 && bmant[22:0] == 0) begin
+    if(a == 32'h00000000 && b == 32'h00000000) begin
         ssign = 0;
         smant = 0;
     end

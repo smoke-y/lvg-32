@@ -13,26 +13,31 @@ module tb_fpadd();
         b = 32'h3fab851f;
         exp = 32'h3ff432ca;
         #10;
-        stat(a,b,exp);
+        stat();
 
         a = 32'h00000000;
         b = 32'h3fab851f;
         exp = 32'h3fab851f;
         #10;
-        stat(a,b,exp);
+        stat();
 
         a = 32'h3aa137f4;
         b = 32'h3c4985f0;
         exp = 32'h3c5dacef;
         #10;
-        stat(a,b,exp);
+        stat();
 
         a = 32'h00000000;
         b = 32'h00000000;
         exp = 32'h00000000;
         #10;
-        stat(a,b,exp);
+        stat();
 
+        a = 32'h3f800000;
+        b = 32'h3f800000;
+        exp = 32'h40000000;
+        #10;
+        stat();
         $finish;
     end
 
