@@ -1,7 +1,7 @@
-module mulf(
-    output reg [31:0] s,
+module fpmul(
     input [31:0] a, 
-    input [31:0] b
+    input [31:0] b,
+    output reg [31:0] s
 );
 
     wire ssign = a[31] ^ b[31];
