@@ -3,7 +3,7 @@
 module tb_sysarr();
 
 reg [31:0] l11, l21, l31, l41, u11, u12, u13, u14;
-wire [3:0] count;
+wire [4:0] count;
 
 sysarr uut(l11, l21, l31, l41, u11, u12, u13, u14,
     clk, rst, count);

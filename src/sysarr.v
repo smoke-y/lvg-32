@@ -4,7 +4,7 @@ module sysarr(
     input wire [31:0] l11, l21, l31, l41,
     u11, u12, u13, u14,
     input wire clk, rst,
-    output reg [3:0] count
+    output reg [4:0] count
 );
 
 wire [31:0] u21, u31, u41, u22, u32, u42, u23, u33, u43, u24, u34, u44;
