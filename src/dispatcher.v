@@ -56,9 +56,7 @@ assign add_b4 = (count == 4'd8)? a41 : 32'b0;
 always @(posedge clk) begin
     if(shouldAdd) begin
         case(count)
-            4'd5: begin
-                d1 <= add_out1;
-            end
+            4'd5: d1 <= add_out1;
             4'd6: begin
                 d1 <= add_out1;
                 d2 <= add_out2;
@@ -83,15 +81,11 @@ always @(posedge clk) begin
                 d1 <= add_out1;
                 d2 <= add_out2;
             end
-            4'd11: begin
-                d1 <= add_out1;
-            end
+            4'd11: d1 <= add_out1;
         endcase
     end else begin
         case(count)
-            4'd5: begin
-                d1 <= r11;
-            end
+            4'd5: d1 <= r11;
             4'd6: begin
                 d1 <= r12;
                 d2 <= r21;
@@ -116,9 +110,7 @@ always @(posedge clk) begin
                 d1 <= r34;
                 d2 <= r43;
             end
-            4'd11: begin
-                d1 <= r44;
-            end
+            4'd11: d1 <= r44;
         endcase
     end
 end
