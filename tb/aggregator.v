@@ -4,7 +4,7 @@ module tb_aggregator();
 
 wire [31:0] r11, r12, r13, r14, r21, r22, r23, r24, r31, r32, r33, r34, r41, r42, r43, r44;
 reg [31:0] d1, d2, d3, d4;
-reg [4:0] count;
+reg [5:0] count;
 reg clk = 1'b1;
 always #5 clk = ~clk;
 
@@ -15,7 +15,7 @@ aggregator agg(
 );
 
 initial begin
-    count <= 4'd6;
+    count <= 5'd6;
     d1 <= 32'h0;
     @(posedge clk);
     tick();

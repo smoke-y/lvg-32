@@ -4,12 +4,11 @@ module sysarr(
     input wire [31:0] l11, l21, l31, l41,
     u11, u12, u13, u14,
     input wire clk, rst,
-    output reg [4:0] count
+    output wire[31:0] r11, r12, r13, r14, r21, r22, r23, r24, r31, r32, r33, r34, r41, r42, r43, r44
 );
 
 wire [31:0] u21, u31, u41, u22, u32, u42, u23, u33, u43, u24, u34, u44;
 wire [31:0] l12, l13, l14, l22, l23, l24, l32, l33, l34, l42, l43, l44;
-wire [31:0] r11, r12, r13, r14, r21, r22, r23, r24, r31, r32, r33, r34, r41, r42, r43, r44;
 wire [31:0] _l1, _l2, _l3, _l4;
 wire [31:0] _u1, _u2, _u3, _u4;
 
@@ -32,14 +31,5 @@ sysblock p41(u41, l41, clk, rst, _u1, l42, r41);
 sysblock p42(u42, l42, clk, rst, _u2, l43, r42);
 sysblock p43(u43, l43, clk, rst, _u3, l44, r43);
 sysblock p44(u44, l44, clk, rst, _u4, _l4, r44);
-
-always @(posedge clk) begin
-    if(rst) begin
-        count <= 0;
-    end
-    else begin
-        count <= count + 1;
-    end
-end
 
 endmodule;

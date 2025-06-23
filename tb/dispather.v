@@ -4,7 +4,7 @@ module tb_dispatcher();
 
 reg [31:0] r11, r12, r13, r14, r21, r22, r23, r24, r31, r32, r33, r34, r41, r42, r43, r44;
 reg [31:0] a11, a12, a13, a14, a21, a22, a23, a24, a31, a32, a33, a34, a41, a42, a43, a44;
-reg [4:0] count;
+reg [5:0] count;
 reg shouldAdd;
 wire [31:0] d1, d2, d3, d4;
 reg clk = 1'b1;
@@ -17,11 +17,11 @@ dispatcher dis(
     d1, d2, d3, d4);
 
 initial begin
-    count <= 0;
-    shouldAdd <= 0;
+    count <= 5'd0;
+    shouldAdd <= 1'b0;
 
     @(posedge clk);
-    count <= 5;
+    count <= 5'd5;
     r11 <= 32'h00000000;
     r12 <= 32'h00000001;
     r13 <= 32'h00000002;
@@ -51,7 +51,7 @@ initial begin
     tick();
     tick();
 
-    count <= 5;
+    count <= 5'd5;
     shouldAdd <= 1;
 
     r11 <= 32'h00000000;

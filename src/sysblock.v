@@ -1,5 +1,8 @@
 `include "src/fpmul.v"
+`ifndef FPADD 
+`define FPADD
 `include "src/fpadd.v"
+`endif
 
 module sysblock(
     input wire [31:0] up, left,

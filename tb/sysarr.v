@@ -3,10 +3,13 @@
 module tb_sysarr();
 
 reg [31:0] l11, l21, l31, l41, u11, u12, u13, u14;
-wire [4:0] count;
+wire [31:0] r11, r12, r13, r14, r21, r22, r23, r24, r31, r32, r33, r34, r41, r42, r43, r44;
 
-sysarr uut(l11, l21, l31, l41, u11, u12, u13, u14,
-    clk, rst, count);
+sysarr uut(
+    l11, l21, l31, l41, u11, u12, u13, u14,
+    clk, rst,
+    r11, r12, r13, r14, r21, r22, r23, r24, r31, r32, r33, r34, r41, r42, r43, r44
+);
 
 reg rst = 1'b0;
 reg clk = 1'b1;
@@ -209,12 +212,11 @@ end
 endtask
 task stat(); begin
     $display("");
-    $display("count: %d\n%h %h %h %h\n%h %h %h %h\n%h %h %h %h\n%h %h %h %h",
-        uut.count,
-        uut.r11, uut.r12, uut.r13, uut.r14,
-        uut.r21, uut.r22, uut.r23, uut.r24,
-        uut.r31, uut.r32, uut.r33, uut.r34,
-        uut.r41, uut.r42, uut.r43, uut.r44
+    $display("%h %h %h %h\n%h %h %h %h\n%h %h %h %h\n%h %h %h %h",
+        r11, r12, r13, r14,
+        r21, r22, r23, r24,
+        r31, r32, r33, r34,
+        r41, r42, r43, r44
     );
 end
 endtask
