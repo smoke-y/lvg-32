@@ -17,11 +17,10 @@ dispatcher dis(
     d1, d2, d3, d4);
 
 initial begin
-    count <= 5'd0;
     shouldAdd <= 1'b0;
 
     @(posedge clk);
-    count <= 5'd5;
+    count <= 5'd0;
     r11 <= 32'h00000000;
     r12 <= 32'h00000001;
     r13 <= 32'h00000002;
@@ -50,8 +49,9 @@ initial begin
     tick();
     tick();
     tick();
+    tick();
 
-    count <= 5'd5;
+    count <= 5'd0;
     shouldAdd <= 1;
 
     r11 <= 32'h00000000;
@@ -93,6 +93,7 @@ initial begin
     print_rmat();
     $display("");
     print_amat();
+    tick();
     tick();
     tick();
     tick();

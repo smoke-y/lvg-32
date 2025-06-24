@@ -7,34 +7,34 @@ module aggregator(
 
 always @(posedge clk) begin
     case(count)
-        5'd8: begin
+        5'd1: begin
             r11 <= d1;
         end
-        5'd9: begin
+        5'd2: begin
             r12 <= d1;
             r21 <= d2;
         end
-        5'd10: begin
+        5'd3: begin
             r13 <= d1;
             r22 <= d2;
             r31 <= d3;
         end
-        5'd11: begin
+        5'd4: begin
             r14 <= d1;
             r23 <= d2;
             r32 <= d3;
             r41 <= d4;
         end
-        5'd12: begin
+        5'd5: begin
             r24 <= d1;
             r33 <= d2;
             r42 <= d3;
         end
-        5'd13: begin
+        5'd6: begin
             r34 <= d1;
             r43 <= d2;
         end
-        5'd14: begin
+        5'd7: begin
             r44 <= d1;
         end
     endcase

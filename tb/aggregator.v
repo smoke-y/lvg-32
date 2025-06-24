@@ -15,8 +15,12 @@ aggregator agg(
 );
 
 initial begin
-    count <= 5'd6;
+    count <= 5'd0;
+
+    @(posedge clk);
+    tick();
     d1 <= 32'h0;
+
     @(posedge clk);
     tick();
     d1 <= 32'h1;

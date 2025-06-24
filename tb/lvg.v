@@ -2,61 +2,70 @@
 
 module tb_lvg();
 
-reg[31:0] m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44;
-reg[31:0] n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44;
+reg[31:0] l11, l12, l13, l14, l21, l22, l23, l24, l31, l32, l33, l34, l41, l42, l43, l44;
+reg[31:0] r11, r12, r13, r14, r21, r22, r23, r24, r31, r32, r33, r34, r41, r42, r43, r44;
+reg[31:0] a11, a12, a13, a14, a21, a22, a23, a24, a31, a32, a33, a34, a41, a42, a43, a44;
 reg rst = 1'b1;
 reg clk = 1'b1;
-reg load = 1'b1;
+reg[15:0] instr;
 always #5 clk = ~clk;
 
 lvg _lvg(
-    m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44,
-    n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44,
-    clk, rst, load
+    l11, l12, l13, l14, l21, l22, l23, l24, l31, l32, l33, l34, l41, l42, l43, l44,
+    r11, r12, r13, r14, r21, r22, r23, r24, r31, r32, r33, r34, r41, r42, r43, r44,
+    a11, a12, a13, a14, a21, a22, a23, a24, a31, a32, a33, a34, a41, a42, a43, a44,
+    instr,
+    clk, rst
 );
 
 initial begin
-    @(posedge clk);
     rst <= 1'b1;
-    load <= 1'b1;
-    m11 <= 32'h3e9cdd17;
-    m12 <= 32'h0;
-    m13 <= 32'h0;
-    m14 <= 32'h0;
-    m21 <= 32'h3ee3e433;
-    m22 <= 32'h0;
-    m23 <= 32'h0;
-    m24 <= 32'h0;
-    m31 <= 32'h0;
-    m32 <= 32'h0;
-    m33 <= 32'h0;
-    m34 <= 32'h0;
-    m41 <= 32'h0;
-    m42 <= 32'h0;
-    m43 <= 32'h0;
-    m44 <= 32'h0;
+    instr[7:0] <= 8'b0;
 
-    n11 <= 32'h3f800000;
-    n12 <= 32'h0;
-    n13 <= 32'h0;
-    n14 <= 32'h0;
-    n21 <= 32'h3f800000;
-    n22 <= 32'h0;
-    n23 <= 32'h0;
-    n24 <= 32'h0;
-    n31 <= 32'h0;
-    n32 <= 32'h0;
-    n33 <= 32'h0;
-    n34 <= 32'h0;
-    n41 <= 32'h0;
-    n42 <= 32'h0;
-    n43 <= 32'h0;
-    n44 <= 32'h0;
-
-    @(posedge clk)
+    @(posedge clk);
     rst <= 1'b0;
-    load <= 1'b0;
+    instr[7:0] <= 8'd2;
+
+    r11 <= 32'h3e9cdd17;
+    r12 <= 32'h0;
+    r13 <= 32'h0;
+    r14 <= 32'h0;
+    r21 <= 32'h3ee3e433;
+    r22 <= 32'h0;
+    r23 <= 32'h0;
+    r24 <= 32'h0;
+    r31 <= 32'h0;
+    r32 <= 32'h0;
+    r33 <= 32'h0;
+    r34 <= 32'h0;
+    r41 <= 32'h0;
+    r42 <= 32'h0;
+    r43 <= 32'h0;
+    r44 <= 32'h0;
+
     @(posedge clk)
+    instr[7:0] <= 8'd1;
+
+    l11 <= 32'h3f800000;
+    l12 <= 32'h3f800000;
+    l13 <= 32'h0;
+    l14 <= 32'h0;
+    l21 <= 32'h0;
+    l22 <= 32'h0;
+    l23 <= 32'h0;
+    l24 <= 32'h0;
+    l31 <= 32'h0;
+    l32 <= 32'h0;
+    l33 <= 32'h0;
+    l34 <= 32'h0;
+    l41 <= 32'h0;
+    l42 <= 32'h0;
+    l43 <= 32'h0;
+    l44 <= 32'h0;
+
+    @(posedge clk);
+    instr[7:0] <= 8'd3;
+
     @(posedge clk)
     @(posedge clk)
     @(posedge clk)
@@ -73,11 +82,11 @@ initial begin
     @(posedge clk)
     @(posedge clk)
     $display("count: %d\n%h %h %h %h\n%h %h %h %h\n%h %h %h %h\n%h %h %h %h",
-        _lvg.count,
-        _lvg.r11, _lvg.r12, _lvg.r13, _lvg.r14,
-        _lvg.r21, _lvg.r22, _lvg.r23, _lvg.r24,
-        _lvg.r31, _lvg.r32, _lvg.r33, _lvg.r34,
-        _lvg.r41, _lvg.r42, _lvg.r43, _lvg.r44
+        _lvg.sysCount,
+        _lvg.b11, _lvg.b12, _lvg.b13, _lvg.b14,
+        _lvg.b21, _lvg.b22, _lvg.b23, _lvg.b24,
+        _lvg.b31, _lvg.b32, _lvg.b33, _lvg.b34,
+        _lvg.b41, _lvg.b42, _lvg.b43, _lvg.b44
     );
 
     $finish;

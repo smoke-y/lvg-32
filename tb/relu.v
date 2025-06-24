@@ -7,7 +7,7 @@ reg clk = 1'b1;
 always #5 clk = ~clk;
 wire[31:0] out;
 
-relu unit(x, clk, out);
+relu unit(x, clk, 1'b1, out);
 
 initial begin
     x <= 0;
