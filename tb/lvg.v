@@ -1,4 +1,4 @@
-`include "src/lvg.v"
+`include "src/lvg/lvg.v"
 
 module tb_lvg();
 

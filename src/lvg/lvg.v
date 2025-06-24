@@ -1,8 +1,8 @@
-`include "src/dispatcher.v"
-`include "src/activation/relu.v"
-`include "src/aggregator.v"
-`include "src/sysarr.v"
-`include "src/dripper.v"
+`include "src/lvg/dispatcher.v"
+`include "src/lvg/activation/relu.v"
+`include "src/lvg/aggregator.v"
+`include "src/lvg/sysarr.v"
+`include "src/lvg/dripper.v"
 
 module lvg(
     input wire[31:0] l11, l12, l13, l14, l21, l22, l23, l24, l31, l32, l33, l34, l41, l42, l43, l44,

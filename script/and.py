@@ -33,6 +33,6 @@ for epoch in range(500):
 
 for data in dataSet:
     pred = model(torch.tensor(data, dtype=torch.float))
-    print(f"{data[0]} & {data[0]} = {pred.detach().numpy()}")
+    print(f"{data[0]} & {data[1]} = {pred.detach().numpy()}")
 
 for row in model.l1.weight.data.T: print(row.tolist())
