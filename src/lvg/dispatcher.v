@@ -1,6 +1,6 @@
 `ifndef FPADD 
 `define FPADD
-`include "src/fpadd.v"
+`include "src/lvg/fp/fpadd.v"
 `endif
 
 module dispatcher(

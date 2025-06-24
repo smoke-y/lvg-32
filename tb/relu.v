@@ -1,4 +1,4 @@
-`include "src/activation/relu.v"
+`include "src/lvg/activation/relu.v"
 
 module tb_relu();
 

@@ -1,4 +1,4 @@
-`include "src/sysblock.v"
+`include "src/lvg/sysblock.v"
 
 module tb_sysblock();
     reg [31:0] up, left;

@@ -1,4 +1,4 @@
-`include "src/dripper.v"
+`include "src/lvg/dripper.v"
 
 module tb_dripper();
 

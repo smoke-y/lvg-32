@@ -1,4 +1,4 @@
-`include "src/fpmul.v"
+`include "src/lvg/fp/fpmul.v"
 
 module tb_fpmul();
     reg [31:0] a, b;

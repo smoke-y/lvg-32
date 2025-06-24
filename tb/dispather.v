@@ -1,4 +1,4 @@
-`include "src/dispatcher.v"
+`include "src/lvg/dispatcher.v"
 
 module tb_dispatcher();
 

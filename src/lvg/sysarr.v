@@ -1,4 +1,4 @@
-`include "src/sysblock.v"
+`include "src/lvg/sysblock.v"
 
 module sysarr(
     input wire [31:0] l11, l21, l31, l41,

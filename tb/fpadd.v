@@ -1,4 +1,4 @@
-`include "src/fpadd.v"
+`include "src/lvg/fp/fpadd.v"
 
 module tb_fpadd();
     reg [31:0] a, b;

@@ -1,4 +1,4 @@
-`include "src/aggregator.v"
+`include "src/lvg/aggregator.v"
 
 module tb_aggregator();
 

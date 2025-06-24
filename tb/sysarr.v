@@ -1,4 +1,4 @@
-`include "src/sysarr.v"
+`include "src/lvg/sysarr.v"
 
 module tb_sysarr();
 
