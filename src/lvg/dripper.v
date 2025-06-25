@@ -69,6 +69,12 @@ always @(posedge clk) begin
                 p3 <= 32'h0;
                 p4 <= r14;
             end
+            default: begin
+                p1 <= 32'h0;
+                p2 <= 32'h0;
+                p3 <= 32'h0;
+                p4 <= 32'h0;
+            end
         endcase
     end
 end
