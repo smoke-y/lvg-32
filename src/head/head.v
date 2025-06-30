@@ -32,27 +32,17 @@ lvg _lvg(
     i11, i12, i13, i14, i21, i22, i23, i24, i31, i32, i33, i34, i41, i42, i43, i44
 );
 
-reg[1:0] count;
+reg count;
 always @(posedge clk) begin
     readWeight <= 1'b0;
     writeWeight <= 1'b0;
     if(rst) begin
-        count <= 2'd0;
+        count <= 1'b0;
         instrAddr <= 8'b0;
         instr2 <= 8'd0;
     end else begin
         case(count)
-            2'd0: move();
-            2'd1: begin
-                count <= 2'd2;
-                instr2 <= instr1[7:0];
-                weightAddr <= instr1[15:8];
-                case(instr1[7:0])
-                    8'd1, 8'd2, 8'd3: readWeight <= 1'b1;
-                    8'd4: writeWeight <= 1'b1;
-                endcase
-            end
-            2'd2: begin
+            1'b0: begin
                 case(instr2)
                     8'd3: begin
                         a11 <= o11;
@@ -82,12 +72,21 @@ always @(posedge clk) begin
             default: move();
         endcase
     end
+    1'b1: begin
+        count <= 1'b0;
+        instr2 <= instr1[7:0];
+        weightAddr <= instr1[15:8];
+        case(instr1[7:0])
+            8'd1, 8'd2, 8'd3: readWeight <= 1'b1;
+            8'd4: writeWeight <= 1'b1;
+        endcase
+    end
 endcase
 end
 end
 
 task move(); begin
-    count <= 2'd1;
+    count <= 1'd1;
     instrAddr <= instrAddr + 1;
 end
 endtask
