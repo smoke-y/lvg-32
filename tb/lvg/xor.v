@@ -87,7 +87,7 @@ initial begin
     l44 <= 32'h00000000;
 
     @(posedge clk)
-    instr <= 8'd7;
+    instr <= 8'd8;
 
     waitAndDisplay();
 
@@ -148,7 +148,7 @@ initial begin
     a44 <= 32'h00000000;
 
     @(posedge clk)
-    instr <= 8'd5;
+    instr <= 8'd6;
 
     waitAndDisplay();
 

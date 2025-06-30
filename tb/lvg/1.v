@@ -68,7 +68,7 @@ initial begin
     l12 <= 32'h3f800000;
 
     @(posedge clk);
-    instr <= 8'd4;
+    instr <= 8'd5;
     waitAndDisplay();
 
     a11 <= 32'h3f800000;
@@ -87,13 +87,13 @@ initial begin
     a42 <= 32'h3f800000;
     a43 <= 32'h3f800000;
     a44 <= 32'h3f800000;
-    instr <= 8'd5;
-    waitAndDisplay();
-
     instr <= 8'd6;
     waitAndDisplay();
 
     instr <= 8'd7;
+    waitAndDisplay();
+
+    instr <= 8'd8;
     waitAndDisplay();
 
     $finish;

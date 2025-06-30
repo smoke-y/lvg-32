@@ -73,39 +73,42 @@ always @(posedge clk) begin
     end else begin
         execInstr <= instr;
 
-        case(instr[7:0])
+        case(instr)
             8'd1: shouldLoadL <= 1'b1;
             8'd2: shouldLoadR <= 1'b1;
             8'd3: begin
-                //store
+                //load into A
             end
             8'd4: begin
+                //store
+            end
+            8'd5: begin
                 //mul
-                if(execInstr != 8'd4) begin
+                if(execInstr != 8'd5) begin
                     sysCount <= 5'b1;
                     shouldAdd <= 1'b0;
                     shouldAct <= 1'b0;
                 end
             end
-            8'd5: begin
+            8'd6: begin
                 //mul_add
-                if(execInstr != 8'd5) begin
+                if(execInstr != 8'd6) begin
                     sysCount <= 5'd1;
                     shouldAdd <= 1'd1;
                     shouldAct <= 1'b0;
                 end
             end
-            8'd6: begin
+            8'd7: begin
                 //mul_act
-                if(execInstr != 8'd6) begin
+                if(execInstr != 8'd7) begin
                     sysCount <= 5'd1;
                     shouldAdd <= 1'd0;
                     shouldAct <= 1'b1;
                 end
             end
-            8'd7: begin
+            8'd8: begin
                 //mul_add_act
-                if(execInstr != 8'd7) begin
+                if(execInstr != 8'd8) begin
                     sysCount <= 5'd1;
                     shouldAct <= 1'b1;
                     shouldAdd <= 1'd1;
@@ -114,7 +117,7 @@ always @(posedge clk) begin
         endcase
 
         case(execInstr)
-            8'd4, 8'd5: begin
+            8'd5, 8'd6: begin
                 //mul, mul_add
                 sysCount <= sysCount + 1;
                 if(sysCount == 5'd5) disCount <= 1;
@@ -125,11 +128,12 @@ always @(posedge clk) begin
                     srst <= 1'b1;
                 end else if(sysCount > 5'd5) begin
                     disCount <= disCount + 1;
-                    if(sysCount == 5'd6) aggCount <= 1;
-                    else if(sysCount > 5'd6) aggCount <= aggCount + 1;
+                    if(sysCount == 5'd6) begin
+                        aggCount <= 1;
+                    end else if(sysCount > 5'd6) aggCount <= aggCount + 1;
                 end
             end
-            8'd6, 8'd7: begin
+            8'd7, 8'd8: begin
                 //mul_act, mul_add_act
                 sysCount <= sysCount + 1;
                 if(sysCount == 5'd5) disCount <= 1;
@@ -140,12 +144,12 @@ always @(posedge clk) begin
                     srst <= 1'b1;
                 end else if(sysCount > 5'd5) begin
                     disCount <= disCount + 1;
-                    if(sysCount == 5'd7) aggActCount <= 1;
-                    else if(sysCount > 5'd7) aggActCount <= aggActCount + 1;
+                    if(sysCount == 5'd7) begin
+                        aggActCount <= 1;
+                    end else if(sysCount > 5'd7) aggActCount <= aggActCount + 1;
                 end
             end
         endcase
     end
 end
-
 endmodule

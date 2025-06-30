@@ -1,6 +1,6 @@
 module memory(
     input wire[31:0] i11, i12, i13, i14, i21, i22, i23, i24, i31, i32, i33, i34, i41, i42, i43, i44,
-    input wire read, clk,
+    input wire read, write, clk,
     input wire[7:0] addr,
     output reg[31:0] o11, o12, o13, o14, o21, o22, o23, o24, o31, o32, o33, o34, o41, o42, o43, o44
 );
@@ -25,7 +25,7 @@ always @(posedge clk) begin
         o42 <= mem[addr+13];
         o43 <= mem[addr+14];
         o44 <= mem[addr+15];
-    end else begin
+    end else if(write) begin
         mem[addr] <= i11;
         mem[addr+1]  <= i12;
         mem[addr+2]  <= i13;
