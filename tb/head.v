@@ -14,8 +14,9 @@ initial begin
     
     _head.instrMem.mem[0] <= 16'h0001;
     _head.instrMem.mem[1] <= 16'h0002;
-    _head.instrMem.mem[2] <= 16'h0005;
-    _head.instrMem.mem[3] <= 16'h0204;
+    _head.instrMem.mem[2] <= 16'h0003;
+    _head.instrMem.mem[3] <= 16'h0008;
+    _head.instrMem.mem[4] <= 16'h0204;
 
     _head.weightMem.mem[0] <= 32'h3f800000;
     _head.weightMem.mem[1] <= 32'h3f800000;
@@ -36,6 +37,22 @@ initial begin
 
     @(posedge clk);
     rst <= 1'b0;
+    @(posedge clk)
+    @(posedge clk)
+    @(posedge clk)
+    @(posedge clk)
+    @(posedge clk)
+    @(posedge clk)
+    @(posedge clk)
+    @(posedge clk)
+    @(posedge clk)
+    @(posedge clk)
+    @(posedge clk)
+    @(posedge clk)
+    @(posedge clk)
+    @(posedge clk)
+    @(posedge clk)
+    @(posedge clk)
     @(posedge clk)
     @(posedge clk)
     @(posedge clk)

@@ -44,6 +44,8 @@ initial begin
     r42 <= 32'h00000000;
     r43 <= 32'h00000000;
     r44 <= 32'h00000000;
+    @(posedge clk);
+    instr <= 8'd3;
 
     a11 <= 32'hbfd2cfe4;
     a12 <= 32'h3f67aa55;
@@ -65,12 +67,8 @@ initial begin
     @(posedge clk)
     instr <= 8'd1;
 
-    /*
     l11 <= 32'h00000000;
     l12 <= 32'h00000000;
-    */ 
-    l11 <= 32'h3f800000;
-    l12 <= 32'h3f800000;
     l13 <= 32'h00000000;
     l14 <= 32'h00000000;
     l21 <= 32'h00000000;
@@ -94,10 +92,10 @@ initial begin
     instr <= 8'd1;
 
     l11 <= b11;
-    l12 <= b12;
-    l13 <= b12;
-    l14 <= b12;
-    l21 <= b21;
+    l12 <= b21;
+    l13 <= b13;
+    l14 <= b14;
+    l21 <= b12;
     l22 <= b22;
     l23 <= b23;
     l24 <= b23;
@@ -129,6 +127,9 @@ initial begin
     r42 <= 32'h00000000;
     r43 <= 32'h00000000;
     r44 <= 32'h00000000;
+
+    @(posedge clk);
+    instr <= 8'd3;
 
     a11 <= 32'h3f7f823a;
     a12 <= 32'h00000000;
@@ -172,6 +173,42 @@ task waitAndDisplay(); begin
     @(posedge clk)
     @(posedge clk)
     @(posedge clk)
+    $display("lef\n%h %h %h %h\n%h %h %h %h\n%h %h %h %h\n%h %h %h %h",
+        _lvg.dlef.r11, 
+        _lvg.dlef.r21, 
+        _lvg.dlef.r31, 
+        _lvg.dlef.r41, 
+        _lvg.dlef.r12, 
+        _lvg.dlef.r22, 
+        _lvg.dlef.r32, 
+        _lvg.dlef.r42, 
+        _lvg.dlef.r13, 
+        _lvg.dlef.r23, 
+        _lvg.dlef.r33,
+        _lvg.dlef.r43,
+        _lvg.dlef.r14,
+        _lvg.dlef.r24,
+        _lvg.dlef.r34,
+        _lvg.dlef.r44
+    );
+    $display("rig\n%h %h %h %h\n%h %h %h %h\n%h %h %h %h\n%h %h %h %h",
+        _lvg.drig.r11, 
+        _lvg.drig.r12, 
+        _lvg.drig.r13, 
+        _lvg.drig.r14, 
+        _lvg.drig.r21, 
+        _lvg.drig.r22, 
+        _lvg.drig.r23, 
+        _lvg.drig.r24, 
+        _lvg.drig.r31, 
+        _lvg.drig.r32, 
+        _lvg.drig.r33,
+        _lvg.drig.r34,
+        _lvg.drig.r41,
+        _lvg.drig.r42,
+        _lvg.drig.r43,
+        _lvg.drig.r44
+    );
     $display("\n%h %h %h %h\n%h %h %h %h\n%h %h %h %h\n%h %h %h %h",
         _lvg.b11, _lvg.b12, _lvg.b13, _lvg.b14,
         _lvg.b21, _lvg.b22, _lvg.b23, _lvg.b24,

@@ -44,20 +44,45 @@ for data in dataSet:
     pred = model(torch.tensor(data, dtype=torch.float))
     print(f"{data[0]} ^ {data[1]} = {pred.detach().numpy()}")
 
+data = (0,0)
+data = torch.tensor(data, dtype=torch.float).reshape(1, -1)
+x = nn.functional.relu(data @ model.l1.weight.data.T + model.l1.bias.data)
+print(x)
+
+print(data)
+print(model.l1.weight.data.T)
+print(model.l1.bias.data)
+print(model.l2.weight.data.T)
+print(model.l2.bias.data)
+exit()
 print("WEIGHT_1")
-for row in model.l1.weight.data.T:
-    for val in row: print(float_to_hex(val), end=" ")
-    print()
-print("BIAS_1")
-for row in model.l1.bias.data:
-    print(float_to_hex(row), end=" ")
-    print()
-print()
-print("WEIGHT_2")
-for row in model.l2.weight.data.T:
-    for val in row: print(float_to_hex(val), end=" ")
-    print()
-print("BIAS_2")
-for row in model.l2.bias.data:
-    print(float_to_hex(row), end=" ")
-    print()
+matrix = model.l1.weight.data.T
+expanded = torch.zeros(4, 4)
+expanded[:2, :] = matrix
+chunk = expanded.flatten()
+for val in chunk:
+    print(f"{float_to_hex(val)}")
+
+print("BIAS_1", model.l1.bias.shape)
+matrix = model.l1.bias.data
+expanded = torch.zeros(4, 4)
+expanded[0, :] = matrix
+chunk = expanded.flatten()
+for val in chunk:
+    print(f"{float_to_hex(val)}")
+
+print("WEIGHT_2", model.l2.weight.T.shape)
+matrix = model.l2.weight.data.T
+expanded = torch.zeros(4, 4)
+expanded[:, 0] = matrix.squeeze(1)
+chunk = expanded.flatten()
+for val in chunk:
+    print(f"{float_to_hex(val)}")
+
+print("BIAS_2", model.l2.bias.shape)
+matrix = model.l2.bias.data
+expanded = torch.zeros(4, 4)
+expanded[0, 0] = matrix[0]
+chunk = expanded.flatten()
+for val in chunk:
+    print(f"{float_to_hex(val)}")

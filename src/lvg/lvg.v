@@ -3,6 +3,7 @@
 `include "src/lvg/aggregator.v"
 `include "src/lvg/sysarr.v"
 `include "src/lvg/dripper.v"
+`include "src/lvg/addFile.v"
 
 module lvg(
     input wire[31:0] l11, l12, l13, l14, l21, l22, l23, l24, l31, l32, l33, l34, l41, l42, l43, l44,
@@ -18,12 +19,19 @@ wire[31:0] r1, r2, r3, r4;
 wire[31:0] d1, d2, d3, d4;
 wire[31:0] g1, g2, g3, g4;
 wire[31:0] s11, s12, s13, s14, s21, s22, s23, s24, s31, s32, s33, s34, s41, s42, s43, s44;
+wire[31:0] aa11, aa12, aa13, aa14, aa21, aa22, aa23, aa24, aa31, aa32, aa33, aa34, aa41, aa42, aa43, aa44;
 reg[5:0] sysCount, disCount, aggCount, aggActCount;
 reg [7:0] execInstr;
-reg shouldAdd, shouldAct, shouldLoadL, shouldLoadR, srst;
+reg shouldAdd, shouldAct, shouldLoadL, shouldLoadR, shouldLoadA, srst;
 
+addFile afile(
+    a11, a12, a13, a14, a21, a22, a23, a24, a31, a32, a33, a34, a41, a42, a43, a44,
+    shouldLoadA, rst, clk,
+    aa11, aa12, aa13, aa14, aa21, aa22, aa23, aa24, aa31, aa32, aa33, aa34, aa41, aa42, aa43, aa44
+);
 dripper dlef(
-    l11, l21, l31, l41, l12, l22, l32, l42, l13, l23, l33, l43, l14, l24, l24, l44,
+    l11, l12, l13, l14, l21, l22, l23, l24, l31, l32, l33, l34, l41, l42, l43, l44,
+    //l11, l21, l31, l41, l12, l22, l32, l42, l13, l23, l33, l43, l14, l24, l24, l44,
     sysCount, shouldLoadL, clk,
     l1, l2, l3, l4
 );
@@ -39,7 +47,8 @@ sysarr sarr(
 );
 dispatcher dis(
     s11, s12, s13, s14, s21, s22, s23, s24, s31, s32, s33, s34, s41, s42, s43, s44,
-    a11, a12, a13, a14, a21, a22, a23, a24, a31, a32, a33, a34, a41, a42, a43, a44,
+    aa11, aa12, aa13, aa14, aa21, aa22, aa23, aa24, aa31, aa32, aa33, aa34, aa41, aa42, aa43, aa44,
+    //a11, a12, a13, a14, a21, a22, a23, a24, a31, a32, a33, a34, a41, a42, a43, a44,
     disCount, clk, shouldAdd,
     d1, d2, d3, d4
 );
@@ -60,6 +69,7 @@ aggregator agg(
 always @(posedge clk) begin
     shouldLoadL <= 1'b0;
     shouldLoadR <= 1'b0;
+    shouldLoadA <= 1'b0;
     srst <= 1'b0;
     if(rst) begin
         sysCount <= 5'd0;
@@ -76,9 +86,7 @@ always @(posedge clk) begin
         case(instr)
             8'd1: shouldLoadL <= 1'b1;
             8'd2: shouldLoadR <= 1'b1;
-            8'd3: begin
-                //load into A
-            end
+            8'd3: shouldLoadA <= 1'b1;
             8'd4: begin
                 //store
             end
